@@ -1,0 +1,10 @@
+e8a1f37090246ace32e45d4eafa7dd38 *DESCRIPTION
+c2a2f380bc9ad0a29a75f8efafbefbcb *NAMESPACE
+e6de722f22b133338e92c04e29b6ef97 *R/unival.R
+a6446b30918e961212efffa7140a33b4 *R/univalboot.R
+a6b4ff47783e742c794cca25e0fff4c8 *R/univalboot2.R
+64efdc1f82de7dc48b4289aff6bb9a6a *data/SAS3f.rda
+c9e81bd9b649422de314ff21ddee78bf *man/SAS3f.Rd
+6ff46465f3baaf596cfeb73fd4986903 *man/unival-internal.Rd
+1b0711d5df7dd64f48346b3ad091b309 *man/unival-package.Rd
+893f10c7394cd01463b12ea63edc3434 *man/unival.Rd
