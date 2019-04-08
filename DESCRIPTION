@@ -2,8 +2,8 @@ Package: unival
 Type: Package
 Title: Assessing Essential Unidimensionality Using External Validity
         Information
-Version: 1.0.1
-Date: 2019-03-01
+Version: 1.0.2
+Date: 2019-04-08
 Author: Pere Joan Ferrando, David Navarro-Gonzalez, Urbano Lorenzo-Seva
 Maintainer: David Navarro-Gonzalez <david.navarro@urv.cat>
 Description: Assess essential unidimensionality using external validity
@@ -18,6 +18,6 @@ Encoding: UTF-8
 NeedsCompilation: no
 LazyData: true
 RoxygenNote: 6.0.1
-Packaged: 2019-03-04 07:28:59 UTC; dng
+Packaged: 2019-04-08 06:12:59 UTC; dng
 Repository: CRAN
-Date/Publication: 2019-03-06 16:00:03 UTC
+Date/Publication: 2019-04-08 06:30:03 UTC

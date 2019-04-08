@@ -318,7 +318,18 @@ unival<-function(y, FP, fg, PHI, FA_model = "Lineal", type, SEP, SEG, relip, rel
     }
     remove(k1,k2,l1,l2)
   }
-  remove(f1,f2,g1,g2,h1,h2,j1,j2)
+
+  # Check if y is standarized
+  tmp1<-round(mean(y), digits = 1)
+  tmp2<-round(sd(y),digits = 1)
+  if ((tmp1==0.0) & (tmp2==1.0)){
+    #standarized, everything ok
+  }
+  else {
+    y <- (y-mean(y))/sd(y)
+  }
+
+  remove(f1,f2,g1,g2,h1,h2,j1,j2,tmp1,tmp2)
 
 
   ################################# Everything  OK #################################
@@ -406,6 +417,13 @@ unival<-function(y, FP, fg, PHI, FA_model = "Lineal", type, SEP, SEG, relip, rel
     tmp<-difevboot[,In] - median(colMeans(difevboot))
     CI_dif<-matrix(0,1,2)
     CI_dif[1]<-quantile(tmp,cent1)
+    if (CI_dif[1]>max_dif){
+      CI_dif[1]=max_dif
+    }
+    h1_dif=FALSE
+    if (CI_dif[1]>0){
+      h1_dif=TRUE
+    }
     CI_dif[2]<-quantile(tmp,cent2)
 
 
@@ -444,6 +462,13 @@ unival<-function(y, FP, fg, PHI, FA_model = "Lineal", type, SEP, SEG, relip, rel
 
     CI_incre <- matrix(0,2,1)
     CI_incre[1] <- quantile(increboot,cent1)
+    if (CI_incre[1]>incre){
+      CI_incre[1]=incre
+    }
+    h1_incre=FALSE
+    if (CI_incre[1]>0){
+      h1_incre=TRUE
+    }
     CI_incre[2] <- quantile(increboot,cent2)
 
 
@@ -543,6 +568,13 @@ unival<-function(y, FP, fg, PHI, FA_model = "Lineal", type, SEP, SEG, relip, rel
       tmp<-difeboot[,In] - median(colMeans(difeboot))
       CI_dif<-matrix(0,1,2)
       CI_dif[1]<-quantile(tmp,cent1)
+      if (CI_dif[1]>max_dif){
+        CI_dif[1]=max_dif
+      }
+      h1_dif=FALSE
+      if (CI_dif[1]>0){
+        h1_dif=TRUE
+      }
       CI_dif[2]<-quantile(tmp,cent2)
 
 
@@ -596,6 +628,13 @@ unival<-function(y, FP, fg, PHI, FA_model = "Lineal", type, SEP, SEG, relip, rel
 
       CI_incre <- matrix(0,2,1)
       CI_incre[1] <- quantile(increboot,cent1)
+      if (CI_incre[1]>incre){
+        CI_incre[1]=incre
+      }
+      h1_incre=FALSE
+      if (CI_incre[1]>0){
+        h1_incre=TRUE
+      }
       CI_incre[2] <- quantile(increboot,cent2)
 
 
@@ -688,12 +727,23 @@ unival<-function(y, FP, fg, PHI, FA_model = "Lineal", type, SEP, SEG, relip, rel
       for (i in 1:k){
         tmp <- quantile(difeboot[,i],c(cent1, cent2))
         CI[,i] <- t(tmp)
+        if (CI[1,i]>dife[i]){
+          CI[1,i]=dife[i]
+        }
       }
 
       In<-which(colMeans(difeboot)==max(colMeans(difeboot)))
       tmp<-difeboot[,In] - median(colMeans(difeboot))
       CI_dif<-matrix(0,1,2)
+
       CI_dif[1]<-quantile(tmp,cent1)
+      if (CI_dif[1]>max_dif){
+        CI_dif[1]=max_dif
+      }
+      h1_dif=FALSE
+      if (CI_dif[1]>0){
+        h1_dif=TRUE
+      }
       CI_dif[2]<-quantile(tmp,cent2)
 
 
@@ -704,6 +754,7 @@ unival<-function(y, FP, fg, PHI, FA_model = "Lineal", type, SEP, SEG, relip, rel
       rmultboot<-matrix(0,500,1)
 
       for (i in 1:500){
+
 
         I <- round(runif(n = N,min = 1,max = N))
 
@@ -721,7 +772,12 @@ unival<-function(y, FP, fg, PHI, FA_model = "Lineal", type, SEP, SEG, relip, rel
         c2 <- c2[,1]
         c2 <- c2[2:(k+1)]*tmpp*tmpp
         bt <- solve(CMT)%*%c2
-        rmultboot[i] <- sqrt(vrdisboot[i,]%*%bt)
+        if ((vrdisboot[i,]%*%bt)<0){ #Check
+          rmultboot[i]=0
+        }
+        else {
+          rmultboot[i] <- sqrt(vrdisboot[i,]%*%bt)
+        }
 
         # C <- cov(FP[I,])
         # m <- dim(C)[2]
@@ -741,12 +797,25 @@ unival<-function(y, FP, fg, PHI, FA_model = "Lineal", type, SEP, SEG, relip, rel
       # Confidence intervals
       CIc <- matrix(0,2,2)
       CIc[1,1] <- quantile(contrast2boot[,1],cent1)
+      if (CIc[1,1]>contrast2[1]){
+        CIc[1,1]=contrast2[1]
+      }
       CIc[2,1] <- quantile(contrast2boot[,2],cent1)
+      if (CIc[2,1]>contrast2[2]){
+        CIc[2,1]=contrast2[2]
+      }
       CIc[1,2] <- quantile(contrast2boot[,1],cent2)
       CIc[2,2] <- quantile(contrast2boot[,2],cent2)
 
       CI_incre <- matrix(0,2,1)
       CI_incre[1] <- quantile(increboot,cent1)
+      if (CI_incre[1]>incre){
+        CI_incre[1]=incre
+      }
+      h1_incre=FALSE
+      if (CI_incre[1]>0){
+        h1_incre=TRUE
+      }
       CI_incre[2] <- quantile(increboot,cent2)
 
 
@@ -767,13 +836,28 @@ unival<-function(y, FP, fg, PHI, FA_model = "Lineal", type, SEP, SEG, relip, rel
     }
     cat('\n')
     cat('Maximum difference\n\n')
-    cat(sprintf('%.4f (%.4f - %.4f) \n\n', max_dif,CI_dif[1],CI_dif[2]))
+    cat(sprintf('%.4f (%.4f - %.4f) ', max_dif,CI_dif[1],CI_dif[2]))
+    if (h1_dif==T){
+      cat('*')
+    }
+    cat('\n\n')
 
     cat('Incremental validity assessment:\n\n')
     cat(sprintf('%.4f (%.4f - %.4f) \n',contrast2[1],CIc[1,1],CIc[1,2]))
     cat(sprintf('%.4f (%.4f - %.4f)\n\n',contrast2[2],CIc[2,1],CIc[2,2]))
     cat('Incremental value estimate \n\n')
-    cat(sprintf('%.4f (%.4f - %.4f) \n', incre, CI_incre[1],CI_incre[2]))
+    cat(sprintf('%.4f (%.4f - %.4f) ', incre, CI_incre[1],CI_incre[2]))
+    if (h1_incre==T){
+      cat('**')
+    }
+    cat('\n\n')
+
+    if (h1_dif==T){ #which.max(dife)
+      cat('* Some factors are more strongly or weakly related to the criterion that can be predicted from their relations to the general factor\n')
+    }
+    if (h1_incre==T){
+      cat('** There is a significant increase in accuracy between the prediction based on the primary factor score estimates and that based on the general factor score estimates.\n')
+    }
     invisible(OUT)
 
   }
