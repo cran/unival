@@ -2,6 +2,8 @@
 \alias{unival-internal}
 \alias{univalboot}
 \alias{univalboot2}
+\alias{size}
+\alias{transpose}
 \title{
 unival-internal
 }
@@ -11,6 +13,8 @@ Functions for internal use. Most precisely, those are used in the computation of
 \usage{
 univalboot
 univalboot2
+size
+transpose
 }
 \author{
 Pere Joan Ferrando

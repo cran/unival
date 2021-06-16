@@ -7,7 +7,7 @@ Assessing essential unidimensionality using external validity information
 Assess essential unidimensionality using external validity information.
 }
 \usage{
-unival(y, FP, fg, PHI, FA_model = 'Lineal', type, SEP, SEG, relip,
+unival(y, FP, fg, PHI, FA_model = 'Linear', type, SEP, SEG, relip,
   relig, percent = 90, display = TRUE)
 }
 \arguments{
@@ -24,7 +24,7 @@ General or second-order factor score estimates.
 Inter-Factor correlation matrix.
 }
   \item{FA_model}{
-Which FA-model was used for calibration and scoring. Available options are: "Lineal" (by default) or "Graded".
+Which FA-model was used for calibration and scoring. Available options are: "Linear" (by default) or "Graded".
 }
   \item{type}{
 Which type of factor score estimates were used in FP and fg. The two available options are: "ML" or "EAP" scores. If not specified, ML will be assumed.
@@ -64,11 +64,11 @@ The factor scores have to be obtained externally, we suggest using FACTOR progra
 \item{incremental_CI}{The confidence interval for the difference above.}
 }
 \references{
-Chalmers, R. P. (2012). mirt: A Multidimensional Item Response Theory Package for the R Environment. Journal of Statistical Software, 48(6), 1-29. \url{https://doi.org/10.18637/jss.v048.i06}
+Chalmers, R. P. (2012). mirt: A Multidimensional Item Response Theory Package for the R Environment. Journal of Statistical Software, 48(6), 1-29. \doi{10.18637/jss.v048.i06}
 
-Lorenzo-Seva, U., & Ferrando, P. J. (2013). Factor 9.2: A comprehensive program for fitting exploratory and semiconfirmatory factor analysis and IRT models. Applied Psychological Measurement, 37(6), 497-498. \url{https://doi.org/10.1177/0146621613487794}
+Lorenzo-Seva, U., & Ferrando, P. J. (2013). Factor 9.2: A comprehensive program for fitting exploratory and semiconfirmatory factor analysis and IRT models. Applied Psychological Measurement, 37(6), 497-498. \doi{10.1177/0146621613487794}
 
-Ferrando, P.J. & Lorenzo-Seva, U. (2019). An External Validity Approach for Assessing Essential Unidimensionality in Correlated-Factor Models. Educational and Psychological Measurement.
+Ferrando, P.J. & Lorenzo-Seva, U. (2019). An External Validity Approach for Assessing Essential Unidimensionality in Correlated-Factor Models. Educational and Psychological Measurement. \doi{10.1177/0013164418824755}
 
 }
 \author{

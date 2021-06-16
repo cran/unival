@@ -1,5 +1,3 @@
 exportPattern("^[[:alpha:]]+")
-importFrom("optimbase","transpose")
-importFrom("optimbase","size")
 importFrom("stats", "cor", "cov", "median", "quantile", "runif", "sd",
              "var")

@@ -1,4 +1,4 @@
-unival<-function(y, FP, fg, PHI, FA_model = "Lineal", type, SEP, SEG, relip, relig, percent = 90, display = TRUE){
+unival<-function(y, FP, fg, PHI, FA_model = "Linear", type, SEP, SEG, relip, relig, percent = 90, display = TRUE){
 
   ######################################################################
   #  y : Related external variable
@@ -74,11 +74,11 @@ unival<-function(y, FP, fg, PHI, FA_model = "Lineal", type, SEP, SEG, relip, rel
 
   ######################################################################
   #  FA_model : Which FA model was used for calibration and scoring. Available options are:
-  #             - "Lineal" (by default)
+  #             - "Linear" (by default)
   #             - "Graded"
   ######################################################################
 
-  if (FA_model=="Lineal" || FA_model=="Graded") {
+  if (FA_model=="Linear" || FA_model=="Graded") {
     if (missing(type)){
       warning("The type of factor scores was not provided, ML scores were assumed.")
       type="ML"
@@ -90,7 +90,7 @@ unival<-function(y, FP, fg, PHI, FA_model = "Lineal", type, SEP, SEG, relip, rel
     }
   }
   else{
-      stop("The argument FA_model has to be Lineal of Graded.")
+      stop("The argument FA_model has to be Linear of Graded.")
   }
 
 
@@ -484,7 +484,7 @@ unival<-function(y, FP, fg, PHI, FA_model = "Lineal", type, SEP, SEG, relip, rel
 
     dife<-matrix(0,1,k)
 
-    if (check_SE==F){ #Lineal model, or graded when the user did not provide errors
+    if (check_SE==F){ #Linear model, or graded when the user did not provide errors
 
       # Differential validity
 
